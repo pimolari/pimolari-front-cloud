@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+  
+  <filter>
+    <filter-name>ObjectifyFilter</filter-name>
+    <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ObjectifyFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>com.pimolari.config.ConfigLoader</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.pimolari.config.ObjectifyLoader</listener-class>
+  </listener>
+
+  <security-constraint>
+    <web-resource-collection>
+        <web-resource-name>Unsecured resources</web-resource-name>
+        <url-pattern>/beta/js/*</url-pattern>
+    </web-resource-collection>
+  </security-constraint>
+
+  <!-- Servlet definitions -->
+  <servlet>
+    <servlet-name>generator_ws_endpoint</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+      <init-param>
+        <param-name>jersey.config.server.provider.packages</param-name>
+        <param-value>
+          com.pimolari.ws
+        </param-value>
+    </init-param>
+    <init-param>
+      <param-name>jersey.config.server.provider.classnames</param-name>
+      <param-value>
+        org.glassfish.jersey.server.mvc.jsp.JspMvcFeature;
+        org.glassfish.jersey.server.gae.GaeFeature;
+        org.glassfish.jersey.media.multipart.MultiPartFeature;
+      </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup> 
+  </servlet>
+
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <jsp-file>/beta/home.jsp</jsp-file>
+  </servlet>
+
+  <!-- Servlet mappings -->
+  <servlet-mapping>
+    <servlet-name>generator_ws_endpoint</servlet-name>
+    <url-pattern>/ew/*</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/monitor</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>

@@ -1,0 +1,45 @@
+<div ng-show="true" id="deviceReading" ng-if="device.lastRead != null">
+	
+	<!--div ng-if="device.params != null">
+		<div ng-repeat="param in device.params">
+			<span class="">{{param.key}} : {{param.name}}</span>
+			<span>{{param.showValue}} : {{param.showLabel}}</span>
+		</div>
+	</div-->
+	
+	<div ng-if="device.lastRead != null">
+		<p>
+			<h5>
+				<div>
+					<div class="col-sm-3" ng-repeat="display in device.lastRead.display">
+						<span ng-if="display.label != null">{{display.label}}:</span>
+						<span><strong>{{display.value}}</strong></span>
+						<!--span class="badge">{{display.label}}: {{display.value}}</span-->
+						<!--input class="form-control badge" type="text" readonly value="{{display.label}}: {{display.value}}"-->
+						
+						
+						<!--span ng-if="display.label != null">{{display.label}}:</span>
+						 {{display.value}}-->
+					</div>
+				</div>
+			</h5>
+		</p>
+		&nbsp;
+		<p>
+			<span ng-if="device.lastRead.received != null">
+			 received on {{device.lastRead.received | date:'dd/MM/yyyy HH:mm:ss'}}
+			</span>
+		</p>
+	</div>
+</div>
+
+<div ng-show="true" id="deviceReading" ng-if="device.lastRead == null">
+	<p>
+		<span class="">
+			No data
+		</span>
+	</p>
+</div>
+
+<!--pre>device: {{device | json}}</pre-->
+

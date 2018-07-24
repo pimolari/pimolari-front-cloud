@@ -1,0 +1,43 @@
+
+		
+
+
+<div id="deviceFormPanel" ng-show="true" ng-controller="DeviceController">
+	
+	<!-- temporary -->
+	<div ng-show="true">
+		<h4><span>Device configuration in {{project.name}}</span></h4>
+	</div>
+	<div id="deviceForm"> 
+		<form>
+			
+			<div class="form-group">
+				<label for="deviceName">Name</label>
+				<input type="text" class="form-control" ng-model="device.name" id="deviceName" placeholder="Enter your device name">
+			</div>
+			
+			<div class="form-group">
+				<label for="deviceDescription">Description</label>
+				<input type="text" class="form-control" ng-model="device.description" id="deviceDescription" placeholder="Comment about your device purpose or what it does">
+			</div>
+			<!--div ng-include src="'/beta/components/device/device-chart.html'"></div-->
+			<div ng-include src="'/beta/components/device/device-mapping.html'"></div>
+			<hr>
+			<div class="form-group">
+				<p>
+					<button class="btn btn-primary btn-xs" type="submit" ng-click="saveDevice(device);">
+						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						Save
+					</button>
+					<button class="btn btn-default btn-xs" type="" ng-click="navigate('/')">
+						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						Cancel
+					</button>
+				</p>
+			</div>
+			<pre>device {{device | json}}</pre>
+		</form>
+	</div>
+</div> <!-- ng-show deviceListPanel -->
+
+

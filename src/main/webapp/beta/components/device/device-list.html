@@ -1,0 +1,58 @@
+
+<div id="deviceList" ng-repeat="device in project.devices"> 
+	<form>
+						
+		<div id="device" class="thumbnail"> 
+			<div class="media-left">
+				<a href="#">
+										
+				</a>
+			</div>
+								
+			<div class="media-body">
+									
+				<div ng-show="true" id="deviceNameAndId">
+					<h4 class="media-heading">
+						<span>{{device.name}}</span>&nbsp;
+					</h4>
+				</div>
+									
+				<div ng-show="true" id="deviceDescription">
+					<p><i>
+						{{device.description}}
+					</i></p>
+				</div>				
+				<!-- Includes device reading template -->
+				<div ng-include src="'/beta/components/device/device-reading.html'"></div>
+					
+				<div ng-show="true" id="deviceActions">
+					<p>
+						<button type="button" class="btn btn-default btn-xs" ng-click="showHistory = !showHistory; getReadings(device);">
+							<span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+							Last 10 readings
+						</button>
+						<button type="button" class="btn btn-default btn-xs" ng-click="deviceDetails(device);">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							View details
+						</button>
+					</p>
+				</div>
+									
+				<div ng-show="showHistory" id="deviceReadings">
+					<p ng-if="device.readings != null && device.readings.length > 0">
+						<small><strong>Last 10 received records for this device</strong></small>
+					</p>
+					<p ng-if="device.readings == null || device.readings.length == 0">
+						<small><strong>Never received records for this device</strong></small>
+					</p>
+					<!-- Includes device reading template (minimal info) -->
+					<div ng-include src="'/beta/components/device/device-reading-miniature.html'"></div>
+						
+				</div>
+							
+				
+			</div>
+		</div> 
+	</form>
+</div>
+	

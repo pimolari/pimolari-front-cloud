@@ -1,0 +1,12 @@
+
+
+<div id="deviceHistoryReading" ng-repeat="reading in device.readings">
+	<p><small>
+		<div style="display:inline">
+			{{reading.received | date:'dd/MM/yyyy HH:mm:ss'}} 
+		</div>
+		<div style="display:inline" ng-repeat="param in reading.params">
+			{{param.key}} : {{param.value}}
+		</div>
+	</small></p>
+</div>

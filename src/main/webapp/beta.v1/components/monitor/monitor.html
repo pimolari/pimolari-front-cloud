@@ -1,0 +1,28 @@
+
+<div ng-controller="MonitorController">
+<div id="deviceListPanel" ng-show="true">
+	Pimolari monitor panel 2.0
+	<!-- temporary -->
+	<div ng-show="!showEditLongDesc" id="deviceNameAndId" ng-click="">
+		<h3><span>{{project.name}}</span>&nbsp;</h3>
+		<button class="btn btn-success btn-xs" type="button">
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Turn off
+		</button>
+		<button class="btn btn-primary btn-xs" type="button" ng-click="newDevice();">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add device
+		</button>
+	</div>
+					
+	<div ng-show="!showEditLongDesc" id="deviceNameAndId" ng-click="">
+		<h4><span><small>Last updated {{lastupdate | date:'dd/MM/yyyy HH:mm:ss'}} {{message}}</small></span></h4>
+	</div>
+	
+	<!-- Includes device list template-->				
+	<!--ng-include src="'components/project/project-details.html'"-->
+	
+	<!-- Includes device list template-->				
+	<ng-include src="'/beta/components/device/device-list.html'">
+	
+</div> <!-- ng-show deviceListPanel -->
+<!--pre>monitor > currentProject : {{project | json}}</pre-->
+</div>

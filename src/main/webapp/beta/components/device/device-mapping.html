@@ -1,0 +1,192 @@
+
+<div id="deviceMappingPanel" ng-show="true">
+	
+	<!-- temporary -->
+	<div ng-show="true">
+		<h5><span>Parameter map</span></h5>
+	</div>
+	
+	<div>
+		<div class="table-responsive" ng-show="device.params != null && device.params.length > 0"> 
+			<table class="table">
+				<tr>
+					<td>
+						Key
+					</td>
+					<td>
+						Name
+					</td>
+					<td>
+						Type
+					</td>
+					<td>
+						Display options
+					</td>
+					<td/>
+				</tr>
+				<tr ng-repeat="param in device.params">
+					<td class="col-sm-2">
+						<div ng-show="!showParamEdit">
+							{{param.key}}
+						</div>
+						<div ng-show="showParamEdit" >
+							<input type="text" class="form-control input-sm col-sm-2" ng-model="param.key" id="text" placeholder="{{param.key}}">
+						</div>
+					</td>
+					<td class="col-sm-2">
+						<div ng-show="!showParamEdit">
+							{{param.name}}
+						</div>
+						<div ng-show="showParamEdit">
+							<input type="text" class="form-control input-sm col-sm-1" ng-model="param.name" id="text" placeholder="{{param.name}}">
+						</div>
+					</td>
+					<td class="col-sm-2">
+						<div ng-show="!showParamEdit">
+							{{param.type}}
+						</div>
+						<div ng-show="showParamEdit">
+							<select class="form-control input-sm" ng-model="param.type" id="type">
+							  <option ng-repeat="option in config.options.type" value="{{option.id}}">{{option.name}}</option>
+							</select>
+						</div>
+					</td>
+					<td class="col-sm-4">
+						<div ng-show="!showParamEdit">
+							Label: {{param.showLabel}}
+							Value: {{param.showValue}}
+						</div>
+						<div ng-show="showParamEdit">
+							<select class="form-control input-sm" ng-model="param.showLabel" id="type">
+							  <option ng-repeat="option in config.options.label" value="{{option.id}}">{{option.name}}</option>
+							</select>
+						</div>
+						<div ng-show="showParamEdit">
+							<select class="form-control input-sm" ng-model="param.showValue" id="type">
+							  <option ng-repeat="option in config.options.value" value="{{option.id}}">{{option.name}}</option>
+							</select>
+						</div>
+						
+					</td>
+					<td class="col-sm-2">
+						<button ng-show="!showParamEdit" class="btn btn-default btn-xs" type="submit" ng-click="showParamEdit=!showParamEdit;">Edit</button>
+						<button ng-show="showParamEdit" class="btn btn-default btn-xs" type="submit" ng-click="showParamEdit=false;">Done</button>
+						<button class="btn btn-default btn-xs" type="submit" ng-click="_deleteParam(param);">Delete</button>
+					</td>
+						
+				</tr>
+			</table>
+		</div>
+		
+		
+		
+		<div>
+			<p>
+				<button class="btn btn-default btn-xs" type="submit" ng-click="showMappingForm=!showMappingForm;">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					Add parameter
+				</button>
+			</p>
+		</div>
+		
+		
+		
+		<div ng-show="showMappingForm" style="background-color: rgba(252, 255, 227, 0.96);">
+			<!--div class="" style="display: inline-block"-->
+			<div>&nbsp;</div>
+			<form class="form">
+					
+				<div class="form-group col-sm-4">
+					<label for="paramName">Key</label>
+					<input type="text" class="form-control input-sm" ng-model="__param.value.key" id="name" placeholder="">
+				</div>
+				<div class="form-group col-sm-4">
+					<label for="paramVariable">Name</label>
+					<input type="text" class="form-control input-sm" ng-model="__param.value.name" id="text" placeholder="">
+				</div>
+				
+				<!-- CONTINUA AQUI -->
+				<div class="form-group col-sm-4">
+					<label for="paramType">Type</label>
+					<select class="form-control input-sm" ng-model="__param.value.type" id="type">
+					  <option ng-repeat="option in config.options.type" value="{{option.id}}">{{option.name}}</option>
+					</select>
+				</div>
+				
+				<div class="form-group col-sm-4">
+					<label for="paramShowValue">Show value</label>
+					<select class="form-control input-sm" ng-model="__param.value.showValue" id="showValue">
+						<option ng-repeat="option in config.options.value" value="{{option.id}}">{{option.name}}</option>
+					</select>
+				</div>
+				
+				<div class="form-group col-sm-4">
+					<label for="paramShowLabel">Show Label</label>
+					<select class="form-control input-sm" ng-model="__param.value.showLabel" id="showLabel">
+						<option ng-repeat="option in config.options.label" value="{{option.id}}">{{option.name}}</option>
+					</select>
+				</div>
+				<!--
+				<div class="form-group col-sm-4">
+					<label for="paramType">Type</label>
+					<select class="form-control input-sm" ng-model="param.type" id="type">
+						<option value="string" selected>String</option>
+						<option value="integer">Integer</option>
+						<option value="double">Double</option>
+						<option value="email">Email</option>
+					</select>
+				</div>
+				
+				<div class="form-group col-sm-4">
+					<label for="paramShowValue">Show value</label>
+					<select class="form-control input-sm" ng-model="param.showValue" id="showValue">
+						<option value="always" selected>Always show value</option>
+						<option value="never">Never show value</option>
+						<option value="recevied">Only if received</option>
+					</select>
+				</div>
+				
+				<div class="form-group col-sm-4">
+					<label for="paramShowLabel">Show Label</label>
+					<select class="form-control input-sm" ng-model="param.showLabel" id="showLabel">
+						<option value="name" selected="selected">Name</option>
+						<option value="key">Key</option>
+						<option value="name-key">Name(Key)</option>
+						<option value="key-name">Key(Name)</option>
+						<option value="none">None</option>
+					</select>
+				</div>
+				-->
+				
+				<div class="form-group col-sm-4 has-error">
+					&nbsp;
+					<label class="control-label" for="inputError1">{{__param.value.error}}</label>
+				</div>
+				
+				<div id="xxx">
+					&nbsp;
+					
+				</div>
+				
+				<div class="form-group col-sm-12" style="background-color: rgba(252, 255, 227, 0.96);">
+					<p>
+						<button class="btn btn-primary btn-xs" type="submit" ng-click="_addParam(__param);">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							Add now
+						</button>
+						<button class="btn btn-default btn-xs" type="submit" ng-click="_clearParam();showMappingForm=false;">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							Cancel
+						</button>
+					</p>
+				</div>
+				<div class="col-sm-12">&nbsp;</div>
+			</form>
+		</div>
+	</div>
+	
+	<!--pre>__param = {{__param}}</pre-->
+	<!--pre>device.params = {{device.params}}</pre-->		
+	<!--pre>_currentDevice = {{_currentDevice}}</pre-->		
+</div> <!-- ng-show deviceMappingPanel -->
+

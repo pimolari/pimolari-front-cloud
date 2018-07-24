@@ -1,0 +1,40 @@
+
+		
+
+
+<div id="deviceListPanel" ng-show="true" ng-controller="ProjectController">
+	
+	<!-- temporary -->
+	<div ng-show="true">
+		<h4><span>Set up a new project</span></h4>
+	</div>
+					
+	<div id="projectForm"> 
+		<form>
+			<div class="form-group">
+				<label for="projectName">Name</label>
+				<input type="text" class="form-control" ng-model="temp.name" id="projectName" placeholder="Enter your project name">
+			</div>
+			<div class="form-group">
+				<label for="projectDescription">Description</label>
+				<input type="text" class="form-control" ng-model="temp.description" id="projectDescription" placeholder="Comment about your project for future reference if youwant">
+			</div>
+			
+			<div class="form-group">
+				<p>
+					<button class="btn btn-primary btn-xs" type="submit" ng-click="saveProject(temp);">Save</button>
+					<button class="btn btn-default btn-xs" type="" ng-click="navigate('/')">Cancel</button>
+					
+				</p>
+			</div>
+			
+			<div class="form-group">
+				<p>
+				</p>
+			</div>
+			
+			<!--temp = {{temp | json}}</pre-->
+
+		</form>
+	</div>
+</div> <!-- ng-show deviceListPanel -->
